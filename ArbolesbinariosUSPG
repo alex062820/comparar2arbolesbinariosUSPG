@@ -1,0 +1,62 @@
+public class IsSubTreeSolution {
+
+    public static void main(String[] args) {
+
+        TreeNode treeNode1 = buildTree();// Árbol 1
+        TreeNode treeNode2 = buildTree();// Árbol 2
+        boolean sameTree = isSameTree(treeNode1, treeNode2);
+        System.out.println(sameTree);
+
+    }
+    public static boolean isSameTree(TreeNode root1,TreeNode root2) {
+        // Los resultados del árbol no son los mismos, devuelve falso
+        if (root1 != null && root2 == null) { return false; }
+        if (root2 == null && root1 != null) { return false; }
+        // Cuando los dos árboles finalmente vuelven al final
+        if (root1 == null && root2 == null) { return true; }
+
+        if (root1.data != root2.data) {return false; }
+        return  isSameTree(root1.left,root2.left) && isSameTree(root1.right,root2.right);
+
+    }
+    private static TreeNode buildTree() {
+        TreeNode node1 = new TreeNode(1, null, null);
+        TreeNode node2 = new TreeNode(2, null, null);
+        TreeNode node3 = new TreeNode(3, null, null);
+        TreeNode node4 = new TreeNode(4, null, null);
+        node1.left = node2;
+        node1.right = node3;
+        node2.left = node4;
+        return node1;
+    }
+    
+    private static TreeNode buildTree2() {
+        TreeNode node1 = new TreeNode(1, null, null);
+        TreeNode node2 = new TreeNode(2, null, null);
+        TreeNode node3 = new TreeNode(3, null, null);
+        TreeNode node4 = new TreeNode(4, null, null);
+        node1.left = node2;
+        node1.right = node3;
+        node3.left = node4;
+        return node1;
+    }
+}
+
+class TreeNode{
+    int data;
+    TreeNode left;
+    TreeNode right;
+
+    public TreeNode(int data, TreeNode left, TreeNode right) {
+        this.data = data;
+        this.left = left;
+        this.right = right;
+    }
+
+    @Override
+    public String toString() {
+        return "TreeNode{" +
+                "data=" + data +
+                '}';
+    }
+}
